@@ -1,0 +1,146 @@
+<template>
+  <style>
+@font-face { font-family: "Instrument Serif"; src: url("assets/fonts/instrument-serif.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Geist"; src: url("assets/fonts/geist.woff2") format("woff2"); font-weight: 100 900; }
+@font-face { font-family: "Geist Mono"; src: url("assets/fonts/geist-mono.woff2") format("woff2"); font-weight: 100 900; }
+    #root { position: absolute; inset: 0; background: #f9f9f7; color: #16181d; font-family: "Geist", sans-serif; overflow: hidden; }
+    .row { position: absolute; left: 820px; width: 980px; height: 60px; }
+    .bav { position: absolute; left: 0; top: 0; width: 44px; height: 44px; border-radius: 6px; image-rendering: pixelated; }
+    .nm { position: absolute; left: 62px; top: 6px; font: 500 28px/1.2 "Geist", sans-serif; }
+    .num { position: absolute; left: 324px; width: 76px; top: 6px; text-align: right; font: 500 28px/1.2 "Geist", sans-serif; font-variant-numeric: tabular-nums; }
+    .track { position: absolute; left: 420px; top: 12px; width: 560px; height: 20px; background: #efefec; }
+    .bar { position: absolute; left: 420px; top: 12px; height: 20px; background-size: 6px 6px; image-rendering: pixelated; transform-origin: 0 50%; }
+    .wr { position: absolute; top: 12px; height: 20px; transform-origin: 0 50%; background: repeating-linear-gradient(45deg, #c8262b 0 3px, transparent 3px 7px); }
+    #b-big { position: absolute; left: 112px; top: 150px; display: flex; font: 330px/1 "Instrument Serif", serif; letter-spacing: -0.04em; }
+    .dg { display: block; height: 1em; overflow: hidden; }
+    .strip { display: flex; flex-direction: column; }
+    .strip span { height: 1em; display: block; text-align: right; }
+    .bl { position: absolute; left: 120px; top: 520px; width: 620px; overflow: hidden; font: 72px/1.02 "Instrument Serif", serif; letter-spacing: -0.01em; padding-bottom: 0.1em; }
+    .bl .in { display: block; }
+    #b-claim { top: 380px; font-size: 112px; }
+    #b-80 { position: absolute; left: 1688px; top: 104px; width: 0; height: 880px; border-left: 3px dashed #16181d; transform-origin: 50% 0; }
+    #b-80l { position: absolute; left: 1654px; top: 66px; font: 500 28px/1 "Geist", sans-serif; }
+  </style>
+  <div id="root" data-composition-id="board" data-width="1920" data-height="1080">
+    <div id="b-stage" class="clip" data-start="0" data-duration="7.5" data-track-index="1">
+      <div class="row" style="top:140px">
+        <img class="bav" src="assets/avatars/recognizers-text.png" alt="Recognizers-Text" />
+        <span class="nm" id="nm0">Recognizers-Text</span>
+        <span class="num" id="num0">137</span>
+        <span class="track"></span>
+        <span class="bar" id="bar0" style="width:426.2222222222222px;background-image:url(assets/dither/blue-12.svg)"></span>
+        <span class="wr" id="wr0" style="left:846.2222222222222px;width:62.22222222222222px"></span>
+      </div>
+      <div class="row" style="top:216px">
+        <img class="bav" src="assets/avatars/compromise-dates.png" alt="compromise-dates" />
+        <span class="nm" id="nm1">compromise-dates</span>
+        <span class="num" id="num1">135</span>
+        <span class="track"></span>
+        <span class="bar" id="bar1" style="width:420px;background-image:url(assets/dither/ink-12.svg)"></span>
+        <span class="wr" id="wr1" style="left:840px;width:68.44444444444444px"></span>
+      </div>
+      <div class="row" style="top:292px">
+        <img class="bav" src="assets/avatars/chrono-node.png" alt="chrono-node" />
+        <span class="nm" id="nm2">chrono-node</span>
+        <span class="num" id="num2">129</span>
+        <span class="track"></span>
+        <span class="bar" id="bar2" style="width:401.3333333333333px;background-image:url(assets/dither/ink-12.svg)"></span>
+        <span class="wr" id="wr2" style="left:821.3333333333333px;width:71.55555555555554px"></span>
+      </div>
+      <div class="row" style="top:368px">
+        <img class="bav" src="assets/avatars/sugar.png" alt="Sugar" />
+        <span class="nm" id="nm3">Sugar</span>
+        <span class="num" id="num3">115</span>
+        <span class="track"></span>
+        <span class="bar" id="bar3" style="width:357.77777777777777px;background-image:url(assets/dither/ink-12.svg)"></span>
+        <span class="wr" id="wr3" style="left:777.7777777777778px;width:59.111111111111114px"></span>
+      </div>
+      <div class="row" style="top:444px">
+        <img class="bav" src="assets/avatars/timefhuman.png" alt="timefhuman" />
+        <span class="nm" id="nm4">timefhuman</span>
+        <span class="num" id="num4">113</span>
+        <span class="track"></span>
+        <span class="bar" id="bar4" style="width:351.55555555555554px;background-image:url(assets/dither/ink-12.svg)"></span>
+        <span class="wr" id="wr4" style="left:771.5555555555555px;width:96.44444444444444px"></span>
+      </div>
+      <div class="row" style="top:520px">
+        <img class="bav" src="assets/avatars/dateparser.png" alt="dateparser" />
+        <span class="nm" id="nm5">dateparser</span>
+        <span class="num" id="num5">108</span>
+        <span class="track"></span>
+        <span class="bar" id="bar5" style="width:336px;background-image:url(assets/dither/ink-12.svg)"></span>
+        <span class="wr" id="wr5" style="left:756px;width:34.22222222222222px"></span>
+      </div>
+      <div class="row" style="top:596px">
+        <img class="bav" src="assets/avatars/parsedatetime.png" alt="parsedatetime" />
+        <span class="nm" id="nm6">parsedatetime</span>
+        <span class="num" id="num6">104</span>
+        <span class="track"></span>
+        <span class="bar" id="bar6" style="width:323.55555555555554px;background-image:url(assets/dither/ink-12.svg)"></span>
+        <span class="wr" id="wr6" style="left:743.5555555555555px;width:140px"></span>
+      </div>
+      <div class="row" style="top:672px">
+        <img class="bav" src="assets/avatars/date-js.png" alt="date.js" />
+        <span class="nm" id="nm7">date.js</span>
+        <span class="num" id="num7">90</span>
+        <span class="track"></span>
+        <span class="bar" id="bar7" style="width:280px;background-image:url(assets/dither/ink-12.svg)"></span>
+        <span class="wr" id="wr7" style="left:700px;width:267.55555555555554px"></span>
+      </div>
+      <div class="row" style="top:748px">
+        <img class="bav" src="assets/avatars/ctparse.png" alt="ctparse" />
+        <span class="nm" id="nm8">ctparse</span>
+        <span class="num" id="num8">89</span>
+        <span class="track"></span>
+        <span class="bar" id="bar8" style="width:276.8888888888889px;background-image:url(assets/dither/ink-12.svg)"></span>
+        <span class="wr" id="wr8" style="left:696.8888888888889px;width:158.66666666666666px"></span>
+      </div>
+      <div class="row" style="top:824px">
+        <img class="bav" src="assets/avatars/dateutil.png" alt="dateutil" />
+        <span class="nm" id="nm9">dateutil</span>
+        <span class="num" id="num9">71</span>
+        <span class="track"></span>
+        <span class="bar" id="bar9" style="width:220.88888888888889px;background-image:url(assets/dither/ink-12.svg)"></span>
+        <span class="wr" id="wr9" style="left:640.8888888888889px;width:196px"></span>
+      </div>
+      <div class="row" style="top:900px">
+        <img class="bav" src="assets/avatars/any-date-parser.png" alt="any-date-parser" />
+        <span class="nm" id="nm10">any-date-parser</span>
+        <span class="num" id="num10">69</span>
+        <span class="track"></span>
+        <span class="bar" id="bar10" style="width:214.66666666666669px;background-image:url(assets/dither/ink-12.svg)"></span>
+        <span class="wr" id="wr10" style="left:634.6666666666667px;width:71.55555555555554px"></span>
+      </div>
+      <div id="b-80"></div><div id="b-80l">80%</div>
+      <div id="b-big"><span class="dg"><span class="strip" id="dg0" data-layout-ignore><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg"><span class="strip" id="dg1" data-layout-ignore><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span><span class="dg"><span class="strip" id="dg2" data-layout-ignore><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></span></span></div>
+    </div>
+    <div id="b-of" class="clip bl" data-start="1.6" data-duration="1.8" data-track-index="2"><span class="in">of 180, the best&nbsp;score</span></div>
+    <div id="b-no" class="clip bl" data-start="3.4" data-duration="1.6" data-track-index="2"><span class="in">No library cleared&nbsp;80%</span></div>
+    <div id="b-claim" class="clip bl" data-start="5.0" data-duration="2.5" data-track-index="2"><span class="in">Saying nothing beats&nbsp;guessing</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const E = "expo.out";
+    const N = 11, TOP = "137";
+    for (let i = 0; i < N; i++) {
+      tl.fromTo("#nm" + i + ", #num" + i, { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.4, ease: E, immediateRender: false }, 0.1 + i * 0.03);
+      tl.fromTo("#bar" + i, { scaleX: 0 }, { scaleX: 1, duration: 1.1, ease: E, immediateRender: false }, 0.25 + i * 0.05);
+      tl.set("#wr" + i, { scaleX: 0 }, 0);
+      tl.fromTo("#wr" + i, { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: E, immediateRender: false }, 4.9 + i * 0.04);
+    }
+    // 137 rolls in, digit by digit
+    TOP.split("").forEach((d, k) => tl.fromTo("#dg" + k, { yPercent: 0 }, { yPercent: -10 * Number(d), duration: 1.3, ease: E, immediateRender: false }, 0.35 + k * 0.12));
+    // the 80% line drops through every bar
+    tl.set("#b-80, #b-80l", { opacity: 0 }, 0);
+    tl.fromTo("#b-80", { opacity: 1, scaleY: 0 }, { scaleY: 1, duration: 0.6, ease: E, immediateRender: false }, 3.1);
+    tl.fromTo("#b-80l", { opacity: 0 }, { opacity: 1, duration: 0.3, immediateRender: false }, 3.2);
+    tl.to("#b-80, #b-80l", { opacity: 0, duration: 0.25 }, 4.75);
+    // the number leaves for the claim
+    tl.to("#b-big", { yPercent: -8, opacity: 0, duration: 0.35, ease: "power2.in" }, 4.75);
+    [["b-of", 1.6, 3.4], ["b-no", 3.4, 5.0], ["b-claim", 5.0, 7.5]].forEach(([id, a, b]) => {
+      tl.fromTo("#" + id + " .in", { yPercent: 110 }, { yPercent: 0, duration: 0.55, ease: E, immediateRender: false }, a);
+      if (id !== "b-claim") tl.fromTo("#" + id + " .in", { yPercent: 0 }, { yPercent: -110, duration: 0.33, ease: "power2.in", immediateRender: false }, b - 0.36);
+    });
+    window.__timelines["board"] = tl;
+  </script>
+</template>

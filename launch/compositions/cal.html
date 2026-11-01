@@ -1,0 +1,199 @@
+<template>
+  <style>
+@font-face { font-family: "Instrument Serif"; src: url("assets/fonts/instrument-serif.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Geist"; src: url("assets/fonts/geist.woff2") format("woff2"); font-weight: 100 900; }
+@font-face { font-family: "Geist Mono"; src: url("assets/fonts/geist-mono.woff2") format("woff2"); font-weight: 100 900; }
+    #root { position: absolute; inset: 0; background: #f9f9f7; color: #16181d; font-family: "Geist", sans-serif; overflow: hidden; }
+    #cal-stage { position: absolute; inset: 0; }
+    .cell { position: absolute; width: 130px; height: 140px; border-radius: 8px; background: #efefec; overflow: hidden; }
+    .dz { position: absolute; inset: 0; background-size: 12px 12px; image-rendering: pixelated; }
+    .dn { position: absolute; left: 10px; top: 8px; padding: 0 5px; border-radius: 4px; background: #efefec; font: 40px/1.1 "Instrument Serif", serif; }
+    .past .dn { color: #5f636b; }
+    .now { position: absolute; right: 9px; top: 11px; padding: 3px 8px; border-radius: 5px; background: #16181d; color: #f9f9f7; font: 500 22px/1 "Geist", sans-serif; }
+    .okl { position: absolute; inset: 0; border: 4px solid #0b6fd3; border-radius: 8px; opacity: 0; }
+    .slot { position: absolute; width: 50px; height: 50px; border-radius: 7px; border: 2px dashed #d6d6d1; }
+    .av { position: absolute; left: 0; top: 0; width: 44px; height: 44px; border-radius: 6px; transform-origin: 0 0; image-rendering: pixelated; z-index: 5; }
+    #cal-head { position: absolute; left: 830px; top: 140px; font: 500 28px/1.2 "Geist", sans-serif; }
+    #cal-yr { display: inline-block; position: relative; height: 1.2em; overflow: hidden; vertical-align: bottom; }
+    #cal-yr span { display: block; }
+    #yr-b { position: absolute; left: 0; top: 0; color: #c8262b; }
+    .wk { position: absolute; top: 194px; font: 28px/1 "Geist", sans-serif; color: #5f636b; }
+    #cal-asked { position: absolute; left: 120px; top: 146px; font: 28px/1.3 "Geist", sans-serif; color: #5f636b; }
+    .ph { position: absolute; left: 120px; top: 196px; width: 640px; font: 500 40px/1.25 "Geist Mono", monospace; }
+    .ph .in { display: block; }
+    #cal-count { position: absolute; left: 120px; top: 290px; font: 28px/1 "Geist", sans-serif; color: #5f636b; }
+    .ln { position: absolute; left: 120px; top: 360px; width: 640px; overflow: hidden; font: 112px/1 "Instrument Serif", serif; letter-spacing: -0.015em; padding-bottom: 0.12em; }
+    .ln .in { display: block; }
+  </style>
+  <div id="root" data-composition-id="cal" data-width="1920" data-height="1080">
+    <div id="cal-stage" class="clip" data-start="0" data-duration="20" data-track-index="1">
+      <div id="cal-asked">Asked at 14:30 on Wednesday 28 October 2026</div>
+      <div id="cal-head">October – November <span id="cal-yr"><span id="yr-a">2026</span><span id="yr-b">1104</span></span></div>
+      <div class="wk" style="left:842px">Mon</div><div class="wk" style="left:982px">Tue</div><div class="wk" style="left:1122px">Wed</div><div class="wk" style="left:1262px">Thu</div><div class="wk" style="left:1402px">Fri</div><div class="wk" style="left:1542px">Sat</div><div class="wk" style="left:1682px">Sun</div>
+      <div class="slot" style="left:1173px;top:59px"></div><div class="slot" style="left:1231px;top:59px"></div><div class="slot" style="left:1289px;top:59px"></div><div class="slot" style="left:1347px;top:59px"></div><div class="slot" style="left:1405px;top:59px"></div><div class="slot" style="left:1463px;top:59px"></div><div class="slot" style="left:1521px;top:59px"></div><div class="slot" style="left:1579px;top:59px"></div><div class="slot" style="left:1637px;top:59px"></div><div class="slot" style="left:1695px;top:59px"></div><div class="slot" style="left:1753px;top:59px"></div>
+      <div class="cell past" id="c0" style="left:830px;top:230px"><div class="dz" id="dz0"></div><span class="dn">19</span><div class="okl" id="ok0"></div></div>
+      <div class="cell past" id="c1" style="left:970px;top:230px"><div class="dz" id="dz1"></div><span class="dn">20</span><div class="okl" id="ok1"></div></div>
+      <div class="cell past" id="c2" style="left:1110px;top:230px"><div class="dz" id="dz2"></div><span class="dn">21</span><div class="okl" id="ok2"></div></div>
+      <div class="cell past" id="c3" style="left:1250px;top:230px"><div class="dz" id="dz3"></div><span class="dn">22</span><div class="okl" id="ok3"></div></div>
+      <div class="cell past" id="c4" style="left:1390px;top:230px"><div class="dz" id="dz4"></div><span class="dn">23</span><div class="okl" id="ok4"></div></div>
+      <div class="cell past" id="c5" style="left:1530px;top:230px"><div class="dz" id="dz5"></div><span class="dn">24</span><div class="okl" id="ok5"></div></div>
+      <div class="cell past" id="c6" style="left:1670px;top:230px"><div class="dz" id="dz6"></div><span class="dn">25</span><div class="okl" id="ok6"></div></div>
+      <div class="cell past" id="c7" style="left:830px;top:380px"><div class="dz" id="dz7"></div><span class="dn">26</span><div class="okl" id="ok7"></div></div>
+      <div class="cell past" id="c8" style="left:970px;top:380px"><div class="dz" id="dz8"></div><span class="dn">27</span><div class="okl" id="ok8"></div></div>
+      <div class="cell" id="c9" style="left:1110px;top:380px"><div class="dz" id="dz9"></div><span class="dn">28</span><span class="now" data-layout-ignore>now</span><div class="okl" id="ok9"></div></div>
+      <div class="cell" id="c10" style="left:1250px;top:380px"><div class="dz" id="dz10"></div><span class="dn">29</span><div class="okl" id="ok10"></div></div>
+      <div class="cell" id="c11" style="left:1390px;top:380px"><div class="dz" id="dz11"></div><span class="dn">30</span><div class="okl" id="ok11"></div></div>
+      <div class="cell" id="c12" style="left:1530px;top:380px"><div class="dz" id="dz12"></div><span class="dn">31</span><div class="okl" id="ok12"></div></div>
+      <div class="cell" id="c13" style="left:1670px;top:380px"><div class="dz" id="dz13"></div><span class="dn">1 Nov</span><div class="okl" id="ok13"></div></div>
+      <div class="cell" id="c14" style="left:830px;top:530px"><div class="dz" id="dz14"></div><span class="dn">2</span><div class="okl" id="ok14"></div></div>
+      <div class="cell" id="c15" style="left:970px;top:530px"><div class="dz" id="dz15"></div><span class="dn">3</span><div class="okl" id="ok15"></div></div>
+      <div class="cell" id="c16" style="left:1110px;top:530px"><div class="dz" id="dz16"></div><span class="dn">4</span><div class="okl" id="ok16"></div></div>
+      <div class="cell" id="c17" style="left:1250px;top:530px"><div class="dz" id="dz17"></div><span class="dn">5</span><div class="okl" id="ok17"></div></div>
+      <div class="cell" id="c18" style="left:1390px;top:530px"><div class="dz" id="dz18"></div><span class="dn">6</span><div class="okl" id="ok18"></div></div>
+      <div class="cell" id="c19" style="left:1530px;top:530px"><div class="dz" id="dz19"></div><span class="dn">7</span><div class="okl" id="ok19"></div></div>
+      <div class="cell" id="c20" style="left:1670px;top:530px"><div class="dz" id="dz20"></div><span class="dn">8</span><div class="okl" id="ok20"></div></div>
+      <div class="cell" id="c21" style="left:830px;top:680px"><div class="dz" id="dz21"></div><span class="dn">9</span><div class="okl" id="ok21"></div></div>
+      <div class="cell" id="c22" style="left:970px;top:680px"><div class="dz" id="dz22"></div><span class="dn">10</span><div class="okl" id="ok22"></div></div>
+      <div class="cell" id="c23" style="left:1110px;top:680px"><div class="dz" id="dz23"></div><span class="dn">11</span><div class="okl" id="ok23"></div></div>
+      <div class="cell" id="c24" style="left:1250px;top:680px"><div class="dz" id="dz24"></div><span class="dn">12</span><div class="okl" id="ok24"></div></div>
+      <div class="cell" id="c25" style="left:1390px;top:680px"><div class="dz" id="dz25"></div><span class="dn">13</span><div class="okl" id="ok25"></div></div>
+      <div class="cell" id="c26" style="left:1530px;top:680px"><div class="dz" id="dz26"></div><span class="dn">14</span><div class="okl" id="ok26"></div></div>
+      <div class="cell" id="c27" style="left:1670px;top:680px"><div class="dz" id="dz27"></div><span class="dn">15</span><div class="okl" id="ok27"></div></div>
+      <div class="cell" id="c28" style="left:830px;top:830px"><div class="dz" id="dz28"></div><span class="dn">16</span><div class="okl" id="ok28"></div></div>
+      <div class="cell" id="c29" style="left:970px;top:830px"><div class="dz" id="dz29"></div><span class="dn">17</span><div class="okl" id="ok29"></div></div>
+      <div class="cell" id="c30" style="left:1110px;top:830px"><div class="dz" id="dz30"></div><span class="dn">18</span><div class="okl" id="ok30"></div></div>
+      <div class="cell" id="c31" style="left:1250px;top:830px"><div class="dz" id="dz31"></div><span class="dn">19</span><div class="okl" id="ok31"></div></div>
+      <div class="cell" id="c32" style="left:1390px;top:830px"><div class="dz" id="dz32"></div><span class="dn">20</span><div class="okl" id="ok32"></div></div>
+      <div class="cell" id="c33" style="left:1530px;top:830px"><div class="dz" id="dz33"></div><span class="dn">21</span><div class="okl" id="ok33"></div></div>
+      <div class="cell" id="c34" style="left:1670px;top:830px"><div class="dz" id="dz34"></div><span class="dn">22</span><div class="okl" id="ok34"></div></div>
+      <img class="av" id="av0" src="assets/avatars/recognizers-text.png" alt="Recognizers-Text" />
+      <img class="av" id="av1" src="assets/avatars/compromise-dates.png" alt="compromise-dates" />
+      <img class="av" id="av2" src="assets/avatars/chrono-node.png" alt="chrono-node" />
+      <img class="av" id="av3" src="assets/avatars/sugar.png" alt="Sugar" />
+      <img class="av" id="av4" src="assets/avatars/timefhuman.png" alt="timefhuman" />
+      <img class="av" id="av5" src="assets/avatars/dateparser.png" alt="dateparser" />
+      <img class="av" id="av6" src="assets/avatars/parsedatetime.png" alt="parsedatetime" />
+      <img class="av" id="av7" src="assets/avatars/date-js.png" alt="date.js" />
+      <img class="av" id="av8" src="assets/avatars/ctparse.png" alt="ctparse" />
+      <img class="av" id="av9" src="assets/avatars/dateutil.png" alt="dateutil" />
+      <img class="av" id="av10" src="assets/avatars/any-date-parser.png" alt="any-date-parser" />
+      <div id="cal-count"></div>
+    </div>
+    <div id="p0" class="clip ph" data-start="0" data-duration="9.10" data-track-index="3"><span class="in">“next Friday”</span></div>
+    <div id="p2" class="clip ph" data-start="10.9" data-duration="3.00" data-track-index="3"><span class="in">“4 days from tomorrow”</span></div>
+    <div id="p3" class="clip ph" data-start="13.9" data-duration="3.00" data-track-index="3"><span class="in">“Sun Microsystems was bought by Oracle”</span></div>
+    <div id="p4" class="clip ph" data-start="16.9" data-duration="2.70" data-track-index="3"><span class="in">“Room 1104”</span></div>
+    <div id="p1" class="clip ph" data-start="9.1" data-duration="1.8" data-track-index="3"><span class="in" id="p1-text">“Nov 2026”</span></div>
+    <div id="t0" class="clip ln " data-start="0" data-duration="2.70" data-track-index="2"><span class="in">Which Friday is next&nbsp;Friday?</span></div>
+    <div id="t1" class="clip ln " data-start="2.7" data-duration="1.80" data-track-index="2"><span class="in">We asked 11 date&nbsp;parsers</span></div>
+    <div id="t2" class="clip ln " data-start="4.5" data-duration="1.60" data-track-index="2"><span class="in">Six said 6&nbsp;November</span></div>
+    <div id="t3" class="clip ln " data-start="6.1" data-duration="1.60" data-track-index="2"><span class="in">Three said 30&nbsp;October</span></div>
+    <div id="t4" class="clip ln " data-start="7.7" data-duration="1.40" data-track-index="2"><span class="in">Two said nothing</span></div>
+    <div id="t5" class="clip ln " data-start="9.1" data-duration="1.85" data-track-index="2"><span class="in">Then 179 more&nbsp;phrases</span></div>
+    <div id="t6" class="clip ln " data-start="11.3" data-duration="2.60" data-track-index="2"><span class="in">Four of 11 found&nbsp;Monday</span></div>
+    <div id="t7" class="clip ln " data-start="14.3" data-duration="2.60" data-track-index="2"><span class="in">Five found a date in&nbsp;it</span></div>
+    <div id="t8" class="clip ln " data-start="17.3" data-duration="2.30" data-track-index="2"><span class="in">Three moved it to&nbsp;1104</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const E = "expo.out", M = "power3.inOut";
+    const P = ["Recognizers-Text","compromise-dates","chrono-node","Sugar","timefhuman","dateparser","parsedatetime","date.js","ctparse","dateutil","any-date-parser"];
+    const PH = [{"answers":["2026-11-06T00:00","2026-11-06T00:00","2026-11-06T12:00","2026-11-06T00:00","2026-10-30T00:00",null,"2026-11-06T09:00","2026-10-30T14:30","2026-11-06T00:00","2026-10-30T00:00",null],"verdict":["ok","ok","ok","ok","ok","empty","ok","ok","ok","ok","empty"],"accept":["2026-10-30","2026-11-06"]},{"answers":["2026-11-01T00:00","2026-11-02T00:00","2026-10-29T14:30","2026-11-02T00:00","2026-11-01T14:30","2026-10-29T14:30","2026-11-02T09:00","2026-11-02T14:30","2026-10-29T00:00","2026-10-04T00:00","2026-10-29T00:00"],"verdict":["wrong","ok","wrong","ok","wrong","wrong","ok","ok","wrong","wrong","wrong"],"accept":["2026-11-02"]},{"answers":[null,null,"2026-10-25T12:00",null,"2026-11-01T00:00",null,"2026-11-01T14:30",null,"2026-11-04T00:00","2026-11-01T00:00",null],"verdict":["ok","ok","wrong","ok","wrong","ok","wrong","ok","wrong","wrong","ok"],"accept":[null]},{"answers":["1104-01-01T00:00",null,null,"1104-01-01T00:00",null,null,"2026-10-28T11:04","2026-10-29T11:04",null,"1104-10-28T00:00",null],"verdict":["wrong","ok","ok","wrong","ok","ok","wrong","wrong","ok","wrong","ok"],"accept":[null]}];
+    const START = 1792368000000, TODAY = 9;
+    const dayOf = (iso) => { if (!iso || iso.length < 10) return null; const d = Math.round((Date.parse(iso.slice(0, 10) + 'T00:00Z') - START) / 864e5); return d >= 0 && d < 35 ? d : null; };
+    const CX = (d) => 830 + (d % 7) * 140, CY = (d) => 230 + Math.floor(d / 7) * 150;
+    const RX = (i) => 1176 + i * 58, RY = 62, AVS = 0.8181818181818182;
+    const BLUE = "#0b6fd3", RED = "#c8262b";
+    const tile = (l) => l > 0 ? "url(assets/dither/ink-" + l + ".svg)" : "none";
+
+    // where every avatar is, so each move is a fromTo (seek-safe)
+    const pos = P.map((_, i) => ({ x: RX(i), y: RY, s: 1 }));
+    P.forEach((_, i) => tl.set("#av" + i, { x: pos[i].x, y: pos[i].y, scale: 1, boxShadow: "0 0 0 0px transparent" }, 0));
+    const move = (i, to, t, dur, ease) => { const f = pos[i]; tl.fromTo("#av" + i, { x: f.x, y: f.y, scale: f.s }, { x: to.x, y: to.y, scale: to.s, duration: dur, ease, immediateRender: false }, t); pos[i] = to; };
+    const ring = (i, c, t) => tl.set("#av" + i, { boxShadow: c ? "0 0 0 4px " + c : "0 0 0 0px transparent" }, t);
+
+    // drop one phrase's answers onto the calendar; returns the days touched
+    function drop(k, t0, onlyDated, okAt) {
+      const ph = PH[k], count = {}, touched = new Set();
+      const okDays = ph.accept.filter((a) => a && a.length >= 10).map(dayOf).filter((d) => d !== null);
+      okDays.forEach((d) => tl.fromTo("#ok" + d, { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.4, ease: E, immediateRender: false }, okAt ?? t0 - 0.5));
+      let n = 0;
+      ph.answers.forEach((a, i) => {
+        const d = dayOf(a), right = ph.verdict[i] === "ok";
+        if (a === null && onlyDated) return;            // stays home
+        const t = t0 + n++ * 0.085;
+        if (d === null) { move(i, { x: pos[i].x, y: 1180, s: AVS }, t, 0.6, "power2.in"); if (a !== null) ring(i, RED, t); return; }
+        const kk = (count[d] = (count[d] || 0) + 1) - 1;
+        move(i, { x: CX(d) + 10 + (kk % 3) * 40, y: CY(d) + 140 - 46 - Math.floor(kk / 3) * 40, s: AVS }, t, 0.55, M);
+        tl.set("#dz" + d, { backgroundImage: tile(Math.min(13, 2 + kk * 2)) }, t + 0.5);
+        ring(i, right ? BLUE : RED, t + 0.5);
+        touched.add(d);
+      });
+      return { touched, okDays };
+    }
+    // everyone home, the calendar clean
+    function home(t0, state) {
+      P.forEach((_, i) => { move(i, { x: RX(i), y: RY, s: 1 }, t0 + i * 0.03, 0.5, M); ring(i, null, t0); });
+      state.touched.forEach((d) => tl.set("#dz" + d, { backgroundImage: "none" }, t0 + 0.15));
+      state.okDays.forEach((d) => tl.to("#ok" + d, { opacity: 0, duration: 0.25, ease: "power2.in" }, t0));
+    }
+
+    // title lines rise inside their mask and leave upward
+    const TT = [["t0",0,2.7,"Which Friday is next&nbsp;Friday?"],["t1",2.7,4.5,"We asked 11 date&nbsp;parsers"],["t2",4.5,6.1,"Six said 6&nbsp;November"],["t3",6.1,7.7,"Three said 30&nbsp;October"],["t4",7.7,9.1,"Two said nothing"],["t5",9.1,10.95,"Then 179 more&nbsp;phrases"],["t6",11.3,13.9,"Four of 11 found&nbsp;Monday"],["t7",14.3,16.9,"Five found a date in&nbsp;it"],["t8",17.3,19.6,"Three moved it to&nbsp;1104"]];
+    TT.forEach(([id, a, b]) => {
+      if (a > 0) tl.fromTo("#" + id + " .in", { yPercent: 110 }, { yPercent: 0, duration: 0.55, ease: E, immediateRender: false }, a);
+      tl.fromTo("#" + id + " .in", { yPercent: 0 }, { yPercent: -110, duration: 0.33, ease: "power2.in", immediateRender: false }, b - 0.36);
+    });
+    // the phrase under test types in
+    [["p0",0,9.1,"next Friday"],["p2",10.9,13.9,"4 days from tomorrow"],["p3",13.9,16.9,"Sun Microsystems was bought by Oracle"],["p4",16.9,19.6,"Room 1104"]].forEach(([id, a, b, t]) => {
+      if (a > 0) tl.fromTo("#" + id + " .in", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: Math.min(0.9, 0.035 * t.length), ease: "steps(" + (t.length + 2) + ")", immediateRender: false }, a);
+    });
+
+    // 0.8 s: the question becomes the Friday column; 1.6 s: the two Fridays it could mean
+    [4, 11, 18, 25, 32].forEach((d, k) => tl.set("#dz" + d, { backgroundImage: tile(2) }, 0.8 + k * 0.07));
+    [4, 11, 18, 25, 32].forEach((d) => tl.set("#dz" + d, { backgroundImage: "none" }, 2.9));
+
+    // "next Friday"
+    const s1 = drop(0, 3.0, false, 1.6);
+    home(9.1, s1);
+
+    // 179 more: the phrase cycles, the counter climbs, the grid works
+    const CYC = ["Nov 2026","15 Jan 2027","in two weeks","this Saturday","midnight","5pm tomorrow","next month","the end of the year","a week on Friday","The meeting on Monday has been cancelled","Sun Microsystems was bought by Oracle","nächsten Freitag","2026-02-30","13:75"], CNT = [2,5,11,19,30,44,60,79,99,119,139,157,171,180];
+    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    CYC.forEach((t, k) => {
+      const at = 9.2 + k * 0.12;
+      tl.set("#p1-text", { textContent: "“" + t + "”" }, at);
+      tl.set("#cal-count", { textContent: CNT[k] + " of 180" }, at);
+      for (let j = 0; j < 6; j++) { const d = Math.floor(rnd() * 35); tl.set("#dz" + d, { backgroundImage: tile(2 + Math.floor(rnd() * 9)) }, at); tl.set("#dz" + d, { backgroundImage: "none" }, at + 0.32); }
+    });
+    tl.set("#cal-count", { textContent: "" }, 0);
+    tl.set("#cal-count", { textContent: "" }, 10.9);
+
+    // "4 days from tomorrow"
+    const s2 = drop(1, 11.0, false);
+    home(13.9, s2);
+    // "Sun Microsystems was bought by Oracle": staying home is right
+    const s3 = drop(2, 14.4, true);
+    PH[2].answers.forEach((a, i) => { if (a === null) ring(i, BLUE, 15.4); });
+    home(16.9, s3);
+    // "Room 1104": the year moves
+    const ph4 = PH[3]; let hx = 0, yx = 0;
+    const s4 = { touched: new Set(), okDays: [] };
+    ph4.answers.forEach((a, i) => {
+      if (a === null) return;
+      const t = 17.4 + hx * 0.09;
+      if (a.startsWith("1104")) { move(i, { x: 1200 + yx++ * 42, y: 136, s: AVS }, t, 0.55, M); ring(i, RED, t + 0.5); hx++; return; }
+      const d = dayOf(a); move(i, { x: CX(d) + 10, y: CY(d) + 94, s: AVS }, t, 0.55, M); ring(i, RED, t + 0.5); s4.touched.add(d); tl.set("#dz" + d, { backgroundImage: tile(4) }, t + 0.5); hx++;
+    });
+    ph4.answers.forEach((a, i) => { if (a === null) ring(i, BLUE, 18.2); });
+    tl.fromTo("#yr-a", { yPercent: 0 }, { yPercent: -110, duration: 0.45, ease: M, immediateRender: false }, 17.9);
+    tl.fromTo("#yr-b", { yPercent: 110 }, { yPercent: 0, duration: 0.45, ease: M, immediateRender: false }, 17.9);
+    tl.set("#yr-b", { yPercent: 110 }, 0);
+
+    // 19.4 s: every avatar flies to its leaderboard row; the calendar dissolves
+    P.forEach((_, i) => { ring(i, null, 19.35); move(i, { x: 820, y: 140 + i * 76, s: 1 }, 19.35 + i * 0.02, 0.5, M); });
+    tl.to("#cal-stage .cell, #cal-stage .slot, #cal-stage .wk, #cal-head, #cal-asked", { opacity: 0, duration: 0.3, ease: "power2.in", stagger: 0.004 }, 19.35);
+
+    window.__timelines["cal"] = tl;
+  </script>
+</template>

@@ -1,0 +1,15 @@
+{
+ "measuredAt": "2026-10-28",
+ "note": "installKB: du -sk of a fresh install with dependencies (npm i --omit=dev / uv pip install --target). weekly: npm downloads API and pypistats.org, last 7 days.",
+ "chrono":        { "installKB": 8268,  "weekly": 2534473 },
+ "sugar":         { "installKB": 5424,  "weekly": 44641 },
+ "anydate":       { "installKB": 136,   "weekly": 59565 },
+ "recognizers":   { "installKB": 29048, "weekly": 115749 },
+ "datejs":        { "installKB": 352,   "weekly": 371600 },
+ "compromise":    { "installKB": 6252,  "weekly": 66589 },
+ "dateparser":    { "installKB": 9056,  "weekly": 9700295 },
+ "parsedatetime": { "installKB": 220,   "weekly": 5864675 },
+ "dateutil":      { "installKB": 3128,  "weekly": 264355917 },
+ "ctparse":       { "installKB": 2572,  "weekly": 2173 },
+ "timefhuman":    { "installKB": 35112, "weekly": 2872 }
+}
